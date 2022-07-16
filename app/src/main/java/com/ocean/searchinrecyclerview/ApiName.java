@@ -11,7 +11,7 @@ import retrofit2.http.Part;
 public interface ApiName {
 
     @Multipart
-    @POST("/customer_search.php")
+    @POST("customer_search.php")
     Call<List<SearchEmpModel>> searchCustomer(@Part("auth_key") RequestBody auth_key, @Part("customer_name") RequestBody customer_name);
 
 }

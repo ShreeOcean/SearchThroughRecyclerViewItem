@@ -45,4 +45,14 @@ public class SearchEmpModel {
     public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
+
+    @Override
+    public String toString() {
+        return "SearchEmpModel{" +
+                "customer_name='" + customer_name + '\'' +
+                ", email_id='" + email_id + '\'' +
+                ", contact='" + contact + '\'' +
+                ", customer_id='" + customer_id + '\'' +
+                '}';
+    }
 }

@@ -49,6 +49,7 @@
         app:layout_constraintTop_toTopOf="@+id/textField" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_choose_emp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginRight="10dp"
