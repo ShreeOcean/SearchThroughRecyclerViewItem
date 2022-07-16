@@ -52,4 +52,11 @@ public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapt
 
         }
     }
+
+    public void setList(List<SearchEmpModel> empModelList){
+        if(empModelList != null && empModelList.size() > 0 ){
+            this.list = empModelList;
+            notifyDataSetChanged();
+        }
+    }
 }

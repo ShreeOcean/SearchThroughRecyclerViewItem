@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
         android:src="@drawable/ic_search"
-        android:layout_margin="5dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/textField"
         app:layout_constraintEnd_toEndOf="@+id/textField"
         app:layout_constraintTop_toTopOf="@+id/textField" />
@@ -56,6 +56,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"
         android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textField" />

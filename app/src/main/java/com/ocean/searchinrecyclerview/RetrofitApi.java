@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitApi {
 
-    private static final String BASE_URL = "http://dev-test-erp.co.in/basic/api_tracker/";
+    private static final String BASE_URL = "https://erpsurya.co.in/basic/api_tracker/";
     private static Retrofit retrofit =null;
     private OkHttpClient.Builder httpClient;
     private ApiName apiServices;

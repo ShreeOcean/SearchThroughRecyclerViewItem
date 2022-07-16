@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     RecyclerAdapterChooseEmp recyclerAdapter;
     ProgressDialog progressDialog;
+    List<SearchEmpModel> empModel;
 
 
     @Override
@@ -35,11 +36,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.recyclerViewChooseEmp.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerViewChooseEmp.setAdapter(recyclerAdapter);
         binding.imageBtnSearch.setOnClickListener(v -> {
 
             binding.recyclerViewChooseEmp.setVisibility(View.VISIBLE);
+//            Toast.makeText(getApplicationContext(), "Search Image btn clicked", Toast.LENGTH_SHORT).show();
             callRetrofitApiChooseEmp();
         });
+
+        if (recyclerAdapter != null){
+            recyclerAdapter.notifyDataSetChanged();
+        }
 
     }
 
@@ -53,12 +60,14 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<List<SearchEmpModel>> call, Response<List<SearchEmpModel>> response) {
 
                     if (response.isSuccessful()){
+                        empModel.clear();
+                        empModel = response.body();
+                        recyclerAdapter = new RecyclerAdapterChooseEmp(empModel, MainActivity.this);
 
-                        List<SearchEmpModel> empModel = response.body();
+                        recyclerAdapter.setList(empModel);
 
-                        recyclerAdapter = new RecyclerAdapterChooseEmp(empModel, getApplicationContext());
-                        binding.recyclerViewChooseEmp.setAdapter(recyclerAdapter);
                         binding.recyclerViewChooseEmp.setHasFixedSize(true);
+                        binding.recyclerViewChooseEmp.setAdapter(recyclerAdapter);
                         recyclerAdapter.notifyDataSetChanged();
                         System.out.println(response.body());
                         Log.d("MainActivty", "onResponse: " + empModel);
@@ -70,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<List<SearchEmpModel>> call, Throwable t) {
 
-
-                    Toast.makeText(MainActivity.this, " *** " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(MainActivity.this, " *** " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("onFailure", "onFailure: " + t.getMessage().toString());
 
                 }
