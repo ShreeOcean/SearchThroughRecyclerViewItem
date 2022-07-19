@@ -1,4 +1,4 @@
-package com.ocean.searchinrecyclerview;
+package com.ocean.searchinrecyclerview.retrofit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

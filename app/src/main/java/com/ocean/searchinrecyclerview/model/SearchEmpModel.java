@@ -1,10 +1,19 @@
-package com.ocean.searchinrecyclerview;
+package com.ocean.searchinrecyclerview.model;
+
+import com.google.gson.annotations.SerializedName;
 
 public class SearchEmpModel {
 
+    @SerializedName("customer_name")
     private String customer_name;
+
+    @SerializedName("email_id")
     private String email_id;
+
+    @SerializedName("contact")
     private String contact;
+
+    @SerializedName("customer_id")
     private String customer_id;
 
     public SearchEmpModel(String customer_name, String email_id, String contact, String customer_id) {

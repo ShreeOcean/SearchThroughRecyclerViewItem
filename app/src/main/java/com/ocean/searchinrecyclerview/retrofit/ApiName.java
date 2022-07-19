@@ -1,4 +1,6 @@
-package com.ocean.searchinrecyclerview;
+package com.ocean.searchinrecyclerview.retrofit;
+
+import com.ocean.searchinrecyclerview.model.SearchEmpModel;
 
 import java.util.List;
 
