@@ -40,7 +40,7 @@
                 android:id="@+id/et_choose_emp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,9 +59,9 @@
             android:id="@+id/recycler_view_choose_emp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"

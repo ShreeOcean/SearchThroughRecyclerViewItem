@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ocean.searchinrecyclerview.databinding.ActivityMainBinding;
 import com.ocean.searchinrecyclerview.model.SearchEmpModel;
 import com.ocean.searchinrecyclerview.databinding.ChooseEmpSearchListItemBinding;
 
 import java.util.List;
+import java.util.Observable;
 
 public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapterChooseEmp.MyViewHolder> {
 
@@ -34,6 +36,9 @@ public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapt
     public void onBindViewHolder(@NonNull RecyclerAdapterChooseEmp.MyViewHolder holder, int position) {
 
         holder.binding.tvChooseEmpFromRvItem.setText(list.get(position).getCustomer_name());
+        holder.binding.tvChooseEmpFromRvItem.setOnClickListener(v -> {
+
+        });
 
     }
 
@@ -59,4 +64,8 @@ public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapt
             notifyDataSetChanged();
         }
     }
+
+//    public Observable<String> getPositionClicks(){
+//        return onClickSubject.
+//    }
 }

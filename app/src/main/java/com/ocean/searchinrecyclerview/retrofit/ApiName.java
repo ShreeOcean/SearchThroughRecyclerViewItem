@@ -1,5 +1,6 @@
 package com.ocean.searchinrecyclerview.retrofit;
 
+import com.ocean.searchinrecyclerview.model.ChooseEmpExpenseForModel;
 import com.ocean.searchinrecyclerview.model.SearchEmpModel;
 
 import java.util.List;
@@ -14,6 +15,6 @@ public interface ApiName {
 
     @Multipart
     @POST("customer_search.php")
-    Call<List<SearchEmpModel>> searchCustomer(@Part("auth_key") RequestBody auth_key, @Part("customer_name") RequestBody customer_name);
+    Call<ChooseEmpExpenseForModel> searchCustomer(@Part("auth_key") RequestBody auth_key, @Part("customer_name") RequestBody customer_name);
 
 }

@@ -16,6 +16,8 @@ public class SearchEmpModel {
     @SerializedName("customer_id")
     private String customer_id;
 
+    public SearchEmpModel(){}
+
     public SearchEmpModel(String customer_name, String email_id, String contact, String customer_id) {
         this.customer_name = customer_name;
         this.email_id = email_id;
