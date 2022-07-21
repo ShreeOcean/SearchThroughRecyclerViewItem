@@ -1,28 +1,36 @@
 package com.ocean.searchinrecyclerview.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ocean.searchinrecyclerview.databinding.ActivityMainBinding;
 import com.ocean.searchinrecyclerview.model.SearchEmpModel;
 import com.ocean.searchinrecyclerview.databinding.ChooseEmpSearchListItemBinding;
+import com.ocean.searchinrecyclerview.view.MainActivity;
 
 import java.util.List;
-import java.util.Observable;
 
 public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapterChooseEmp.MyViewHolder> {
 
     private List<SearchEmpModel> list;
     private ChooseEmpSearchListItemBinding itemBinding;
     Context context;
+    OnRVItemClickListener listner;
 
     public RecyclerAdapterChooseEmp(List<SearchEmpModel> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public RecyclerAdapterChooseEmp(Context context, List<SearchEmpModel> list, OnRVItemClickListener onRVItemClickListener) {
+
+        this.list = list;
+        this.context = context;
+        this.listner = onRVItemClickListener;
     }
 
     @NonNull
@@ -37,8 +45,12 @@ public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapt
 
         holder.binding.tvChooseEmpFromRvItem.setText(list.get(position).getCustomer_name());
         holder.binding.tvChooseEmpFromRvItem.setOnClickListener(v -> {
-
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.putExtra("customer_name", list.get(position).getCustomer_name());
+            context.startActivity(intent);
         });
+
+
 
     }
 
@@ -56,6 +68,7 @@ public class RecyclerAdapterChooseEmp extends RecyclerView.Adapter<RecyclerAdapt
             binding = itemView;
 
         }
+
     }
 
     public void setList(List<SearchEmpModel> empModelList){

@@ -1,14 +1,11 @@
 package com.ocean.searchinrecyclerview.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -43,43 +40,27 @@ public class MainActivity extends AppCompatActivity {
 
         binding.recyclerViewChooseEmp.setLayoutManager(new LinearLayoutManager(this));
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Please wait...");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
 
-        callRetrofitApiChooseEmp();
-        //binding.recyclerViewChooseEmp.setAdapter(recyclerAdapter);
+//        callRetrofitApiChooseEmp();
+        binding.etChooseEmp.setText(getIntent().getStringExtra("customer_name"));
         binding.imageBtnSearch.setOnClickListener(v -> {
 
             binding.recyclerViewChooseEmp.setVisibility(View.VISIBLE);
-            Toast.makeText(getApplicationContext(), "Search Image btn clicked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Search Image btn clicked", Toast.LENGTH_SHORT).show();
             callRetrofitApiChooseEmp();
 
         });
 
-        binding.recyclerViewChooseEmp.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
-
-        if (recyclerAdapter != null){
-            recyclerAdapter.notifyDataSetChanged();
-
-        }
+//        if (recyclerAdapter != null){
+//            recyclerAdapter.notifyDataSetChanged();
+//            SearchEmpModel searchEmpModel = (SearchEmpModel) getIntent().getExtras().getSerializable("customer_name");
+//            binding.etChooseEmp.setText(searchEmpModel.getCustomer_name());
+//
+//        }
 
     }
 
@@ -92,26 +73,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ChooseEmpExpenseForModel> call, Response<ChooseEmpExpenseForModel> response) {
 
-                if (response.isSuccessful()){
-                    progressDialog.dismiss();
-                    //empModel.clear();
+                if (response.isSuccessful() && response.body().getStatus() == "success"){
                     empModel = response.body().getCustomerListModel();
                     System.out.println(response.body());
                     Log.d("MainActivity", "onResponse: " + response.body().toString());
                     recyclerAdapter = new RecyclerAdapterChooseEmp(empModel, MainActivity.this);
                     recyclerAdapter.setList(empModel);
                     binding.recyclerViewChooseEmp.setAdapter(recyclerAdapter);
-                    recyclerAdapter.notifyDataSetChanged();
+                    //recyclerAdapter.notifyDataSetChanged();
                     System.out.println(response.body());
                     Log.d("MainActivty", "onResponse: " + empModel);
 
-//                    if (empModel != null){
-//                        binding.etChooseEmp.setText();
-//                    }
-
-
                 }
             }
+
 
             @Override
             public void onFailure(Call<ChooseEmpExpenseForModel> call, Throwable t) {
@@ -119,38 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        RetrofitApi.getInstance().getApiServices().searchCustomer(auth_key,customer_name).enqueue(new Callback<List<SearchEmpModel>>() {
-//            @Override
-//            public void onResponse(Call<List<SearchEmpModel>> call, Response<List<SearchEmpModel>> response) {
-//
-//                if (response.isSuccessful()){
-//
-//                    progressDialog.dismiss();
-//                    //empModel.clear();
-//                    empModel = response.body();
-//                    System.out.println(response.body());
-//                    Log.d("MainActivity", "onResponse: " + response.body().toString());
-//                    recyclerAdapter = new RecyclerAdapterChooseEmp(empModel, MainActivity.this);
-//
-//                    recyclerAdapter.setList(empModel);
-//                    binding.recyclerViewChooseEmp.setAdapter(recyclerAdapter);
-//                    recyclerAdapter.notifyDataSetChanged();
-//                    System.out.println(response.body());
-//                    Log.d("MainActivty", "onResponse: " + empModel);
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<SearchEmpModel>> call, Throwable t) {
-//
-//                progressDialog.dismiss();
-//                //Toast.makeText(MainActivity.this, " *** " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//                Log.d("onFailure", "onFailure: " + t.getMessage().toString());
-//
-//            }
-//        });
+
 
 
     }
